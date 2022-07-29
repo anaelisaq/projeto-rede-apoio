@@ -10,7 +10,7 @@ require("dotenv-safe").config()
 const db = require("./database/mongoConfig")
 db.connect()
 
-const swaggerDocument = require("")
+//const swaggerDocument = require("")
 const professionalRouter = require("./routes/professionalRouter")
 const textRouter = require("./routes/textRouter")
 const index = require("./routes/indexRouter")
