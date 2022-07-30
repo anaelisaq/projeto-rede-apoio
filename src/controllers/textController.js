@@ -2,8 +2,8 @@ const TextSchema = require("../models/textSchema")
 
 const createText = async (req, res) => {
     try {
-        const text = req.body
-        const newText = await TextSchema.create({text})
+        const { textContent } = req.body
+        const newText = await TextSchema.create({ textContent })
         const savedText = await newText.save()
 
         if(savedText){
@@ -20,16 +20,16 @@ const createText = async (req, res) => {
 }
 
 const getAll = async (req, res) => {
-    await TextSchema.find(function (error, texts) {
-        if(error) {
-            res.status(500).send({ message: error.message })
-        }
-            res.status(200).json({ 
-                message: "Lista de textos cadastrados:",
-                texts,
-                statusCode: 200
-            })
-    })
+    try {
+        const texts = await TextSchema.find()
+        res.status(200).json({
+            message: "Lista de textos cadastrados:",
+            texts,
+            statusCode: 200
+        })
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
 }
 
 const getById = async (req, res) => {
