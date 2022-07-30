@@ -1,0 +1,481 @@
+    {
+        "swagger": "2.0.0",
+        "info": {
+            "title": "Rede de Apoio: Aldeia Virtual",
+            "version": "1.0.0",
+            "description": "Olá, seja bem vindx à minha API Rest. Sinta-se confortável para pesquisar sobre profissionais que possam lhe ajudar nesse processo de maternidade solo. Não deixe de pegar uma mensagem aleatória para iluminar seu dia ✨"
+        },
+        "servers": [{
+                "url": "http://localhost:8080"
+            },
+            {
+                "url": "https://rede-apoio.herokuapp.com/"
+            }
+        ],
+        "tags": [{
+                "name": "Index",
+                "description": "Initial route"
+            },
+            {
+                "name": "Professionals",
+                "description": "Using Professionals routes"
+            },
+            {
+                "name": "Texts",
+                "description": "Using Texts routes"
+            }
+        ],
+        "definitions": {
+            "Professional": {
+                "type": "object",
+                "properties": {
+                    "id": "mongoose.Types.ObjectId",
+                    "name": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "gender": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "occupation": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "cost": {
+                        "type": "number",
+                        "required": false
+                    },
+                    "proBono": {
+                        "type": "boolean",
+                        "required": true
+                    },
+                    "phone": {
+                        "type": "string",
+                        "required": false
+                    }
+                }
+            },
+            "Text": {
+                "type": "object",
+                "properties": {
+                    "id": "mongoose.Types.ObjectId",
+                    "textContent": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            }
+        },
+        "paths": {
+            "/": {
+                "get": {
+                    "summary": "Introduction",
+                    "description": "This route contains the introduction of the project",
+                    "tags": [
+                        "Rede de Apoio: Aldeia Virtual"
+                    ],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/professionals/new": {
+                "post": {
+                    "summary": "Register of a new Professional",
+                    "description": "This route is responsible for creating a new Professional",
+                    "tags": [
+                        "Professional"
+                    ],
+                    "parameters": [{
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "name": "Ana Elisa Alexandre",
+                                "gender": "mulher cis",
+                                "occupation": "advogada",
+                                "cost": 0,
+                                "proBono": true,
+                                "phone": "1234-6547"
+                            }
+                        }
+                    }],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "406": {
+                            "description": "Not Acceptable"
+                        },
+                        "201": {
+                            "description": "Created"
+                        }
+                    }
+                }
+            },
+            "/professionals/search": {
+                "get": {
+                    "summary": "Get all Professionals",
+                    "description": "This route finds all Professionals",
+                    "tags": [
+                        "Professional"
+                    ],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/professionals/search/{id}": {
+                "get": {
+                    "summary": "Get a Professional by ID",
+                    "description": "This route finds a Professional by the id",
+                    "tags": [
+                        "Professional"
+                    ],
+                    "parameters": [{
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Find Professional by ID",
+                        "schema": {
+                            "example": "62e435536c6ae203c28a7e60"
+                        }
+                    }],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "404": {
+                            "description": "Not Found"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/professionals/search-occupation": {
+                "get": {
+                    "summary": "Get a Professionals by occupation",
+                    "description": "This route finds a Professional by occupation",
+                    "tags": [
+                        "Professional"
+                    ],
+                    "parameters": [{
+                        "in": "query",
+                        "name": "occupation",
+                        "required": true,
+                        "description": "Find Professional by occupation",
+                        "schema": {
+                            "example": "Advogada"
+                        }
+                    }],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/professionals/search-probono": {
+                "get": {
+                    "summary": "Get a Professionals for services pro Bono",
+                    "description": "This route finds a Professional for services pro Bono",
+                    "tags": [
+                        "Professional"
+                    ],
+                    "parameters": [{
+                        "in": "query",
+                        "name": "proBono",
+                        "required": true,
+                        "description": "Find Professional for services pro Bono",
+                        "schema": {
+                            "example": "true"
+                        }
+                    }],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/professionals/search-gender": {
+                "get": {
+                    "summary": "Get a Professionals by gender",
+                    "description": "This route finds a Professional by gender",
+                    "tags": [
+                        "Professional"
+                    ],
+                    "parameters": [{
+                        "in": "query",
+                        "name": "gender",
+                        "required": true,
+                        "description": "Find Professional by gender",
+                        "schema": {
+                            "example": "mulher cis"
+                        }
+                    }],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/professionals/update/{id}": {
+                "put": {
+                    "summary": "Updates a Professional by Id",
+                    "description": "This route updates an Professional",
+                    "tags": [
+                        "Professional"
+                    ],
+                    "parameters": [{
+                            "in": "path",
+                            "name": "id",
+                            "required": true,
+                            "description": "Find Professional by ID and Update",
+                            "schema": {
+                                "example": " 62e435536c6ae203c28a7e60"
+                            }
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "required": true,
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "occupation": "Psicóloga"
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "404": {
+                            "description": "Not Found"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "professionals/delete/{id}": {
+                "delete": {
+                    "summary": "Deletes a Professional by ID",
+                    "description": "This route deletes a Professional",
+                    "tags": [
+                        "Professional"
+                    ],
+                    "parameters": [{
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Find Professional by ID and Delete",
+                        "schema": {
+                            "example": "62e435d26c6ae203c28a7e69"
+                        }
+                    }],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "404": {
+                            "description": "Not Found"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/texts/new": {
+                "post": {
+                    "summary": "New text",
+                    "description": "This route is responsible for creating a new text",
+                    "tags": [
+                        "Text"
+                    ],
+                    "parameters": [{
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                                "textContent": "Vocé é uma mãe incrível!"
+                            }
+                        }
+                    }],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "201": {
+                            "description": "Created"
+                        }
+                    }
+                }
+            },
+            "/texts/{id}": {
+                "get": {
+                    "summary": "Get a text by ID",
+                    "description": "This route finds a text by id",
+                    "tags": [
+                        "Text"
+                    ],
+                    "parameters": [{
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Find text by ID",
+                        "schema": {
+                            "example": "62e49859ff6d0ef3af7505f5"
+                        }
+                    }],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "404": {
+                            "description": "Not Found"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/texts/all": {
+                "get": {
+                    "summary": "Get all texts",
+                    "description": "This route finds all texts",
+                    "tags": [
+                        "Text"
+                    ],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/texts/random": {
+                "get": {
+                    "summary": "Get a random text",
+                    "description": "This route finds a random texts",
+                    "tags": [
+                        "Text"
+                    ],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/texts/update/{id}": {
+                "put": {
+                    "summary": "Update a text by ID",
+                    "description": "This route update a text by ID",
+                    "tags": [
+                        "Text"
+                    ],
+                    "parameters": [{
+                            "in": "path",
+                            "name": "id",
+                            "required": true,
+                            "description": "Find text by ID and Update",
+                            "schema": {
+                                "example": "62e49859ff6d0ef3af7505f5"
+                            }
+                        },
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "required": true,
+                            "description": "Send new text for the update",
+                            "schema": {
+                                "example": {
+                                    "textContent": "Você não precisa dar conta de tudo e muito menos ao mesmo tempo."
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "404": {
+                            "description": "Not Found"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            },
+            "/texts/delete/{id}": {
+                "delete": {
+                    "summary": "Delete text by ID",
+                    "description": "This route deletes a text by ID",
+                    "tags": [
+                        "Text"
+                    ],
+                    "parameters": [{
+                            "in": "path",
+                            "name": "id",
+                            "required": true,
+                            "description": "Find text by ID and Delete",
+                            "schema": {
+                                "example": "62e49859ff6d0ef3af7505f5"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "500": {
+                            "description": "Internal Server Error"
+                        },
+                        "404": {
+                            "description": "Not Found"
+                        },
+                        "200": {
+                            "description": "Success"
+                        }
+                    }
+                }
+            }
+        }
+    }
