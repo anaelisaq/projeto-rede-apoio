@@ -1,16 +1,16 @@
 const ProfessionalSchema = require("../models/professionalSchema")
 
 const getAll = async (req, res) => {
-    await ProfessionalSchema.find(function (error, professionals) {
-        if(error) {
-            res.status(500).send({ message: error.message })
-        }
-            res.status(200).json({ 
-                message: "Lista de profissionais cadastrados:",
-                professionals,
-                statusCode: 200
-            })
-    })
+    try {
+        const professionals = await ProfessionalSchema.find()
+        res.status(200).json({
+            message: "Lista de profissionais cadastrados:",
+            professionals,
+            statusCode: 200
+        })
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
 }
 
 const getById = async (req, res) => {
@@ -34,7 +34,7 @@ const getById = async (req, res) => {
 const getByOccupation = async (req, res) => {
     try {
         const occupation = req.query.occupation
-        const professionals = await ProfessionalSchema.find({ occupation: occupation })
+        const professionals = await ProfessionalSchema.find({ occupation: { $regex: occupation, $options: "i"} })
     
         return res.status(200).send(professionals)
     } catch (error) {
@@ -55,7 +55,7 @@ const getByProBono = async (req, res) => {
 const getByGender = async (req, res) => {
     try {
         const gender = req.query.gender
-        const professionals = await ProfessionalSchema.find({ gender: gender })
+        const professionals = await ProfessionalSchema.find({ gender: { $regex: gender, $options: "i"} })
 
         return res.status(200).send(professionals)
     } catch (error) {
@@ -66,13 +66,13 @@ const getByGender = async (req, res) => {
 const register = async (req, res) => {
     try {
         if (!req.body.name && req.body.occupation){
-            res.status(404).send({
+            res.status(406).send({
                 message: "Os campos obrigatórios precisam ser preenchidos.",
-                "statusCode": 404
+                "statusCode": 406
             })
         }
         
-        const { name, gender, occupation, cost, proBono, phone, } = req.body
+        const { name, gender, occupation, cost, proBono, phone } = req.body
         const newUser = await ProfessionalSchema.create({ name, gender, occupation, cost, proBono, phone })
         const savedUser = await newUser.save()
 
