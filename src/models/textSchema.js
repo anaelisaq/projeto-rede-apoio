@@ -4,7 +4,7 @@ const textSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     textContent: {
         type: String,
-        required: true
+        require: true
     }
 }, { timestamps: true })
 
