@@ -14,10 +14,10 @@
 # 📚JUSTIFICATIVA:
 
 <p align="justify">
-Minha experiência com a maternidade, principalmente a maternidade solo, me fez perceber o quão as mães estão - na maioria das vezes - sozinhas num período tão sensível. A maternidade acaba por ser um período de solidão por não ser tão discutida em sua totalidade, o que pode ser observado é uma romantização de um momento marcado por mudanças drásticas em quesitos hormonal, corporal, psicológios.
+Minha experiência com a maternidade, principalmente a maternidade solo, me fez perceber o quão as mães estão - na maioria das vezes - sozinhas num período tão sensível. A maternidade acaba por ser um período de solidão por não ser tão discutida em sua totalidade, o que pode ser observado é uma romantização de um momento marcado por mudanças drásticas nos quesitos hormonal, corporal, psicológico.
 
 <p align="justify">
-Em alguns casos, a maternidade vem acompanhada de depressão pós parto, confusão pro não se reconhecer mais diante daquele corpo, estranhamento numa rotina que por muitas vezes não foi planejada ou desejada. Ter acesso a uma rede de profissionais que possam ser essa rede de apoio é algo que também divide as mães negras, interioranas e periféricas.
+Em alguns casos, a maternidade vem acompanhada de depressão pós parto; confusão por não se reconhecer mais diante daquele corpo; estranhamento numa rotina que por muitas vezes não foi planejada ou desejada. Ter acesso a uma rede de profissionais que possam ser essa rede de apoio é algo que também divide as mães negras, interioranas e periféricas.
 
 
 ## 🔎 SOBRE A API:
@@ -307,7 +307,7 @@ Desenvolvida utilizando JavaScript e Node.js, a API conta com dois CRUDs complet
 
 |Autora|Vivência|
 |:------:|----|
-| <img src='./assets/avatarpb.png' width = 1000 > | Me chamo Ana Elisa Alexandre, recifense, mulher negra, mãe solo, historiadora e desenvolvedora Back-end. Minha vivência com a maternidade solo e a pandemia, fez ccom que eu desenvolvesse uma deperessão pós parto que somente com a ajuda de profissionais eu consegui sair dessa e correr atrás dos direitos da minha filha. A {reprograma} foi essencial nessa jornada por me mostrar que as barreiras entre as mulheres e a tecnologia são criadas e sustentadas pelo patriarcado, porém juntas podemos diminuí-las e possibilitar as mulheres de diversos contextos mudar sua própria história. |
+| <img src='./assets/avatarpb.png' width = 1000 > | Me chamo Ana Elisa Alexandre, recifense, mulher negra, mãe solo, historiadora e desenvolvedora Back-end. Minha vivência com a maternidade solo e a pandemia, fez com que eu desenvolvesse uma deperessão pós parto e somente com a ajuda de profissionais eu consegui sair dessa para que fosse possível correr atrás dos direitos da minha filha. A {reprograma} foi essencial nessa jornada por me mostrar que as barreiras entre as mulheres e a tecnologia são criadas e sustentadas pelo patriarcado, porém juntas podemos diminuí-las e possibilitar as mulheres de diversos contextos mudar sua própria história. |
 
 ##  ✨ CONTATO:
 
